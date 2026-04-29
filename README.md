@@ -1,6 +1,8 @@
 # apaunov.github.io
 
-Personal website for Alex Paunov. Custom static site, built with a small Python pipeline.
+Personal website for Alex Paunov. Custom static site, served by GitHub Pages at https://apaunov.github.io.
+
+The build pipeline lives in the parent folder (`../code/website/`), not in this repo. See **`../README.md`** for the full setup, build, and deployment workflow. This README covers only what's *inside* the repo.
 
 ## Layout
 

@@ -272,17 +272,16 @@ blockquote {
     text-align: center;
 }
 
+/* Floated wrap figures. shape-outside is set inline by the build step
+   when the picked image has a curvy alpha sibling — see build.py. */
 .figure-wrap-left {
     float: left;
     margin: 0.4em 1.5em 0.5em 0;
-    /* If image has alpha (curvy), follow it: */
-    shape-outside: var(--shape, none);
     shape-margin: 0.6em;
 }
 .figure-wrap-right {
     float: right;
     margin: 0.4em 0 0.5em 1.5em;
-    shape-outside: var(--shape, none);
     shape-margin: 0.6em;
 }
 /* Clear floats after each post so wraps don't leak into the next post */

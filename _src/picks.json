@@ -1,0 +1,47 @@
+{
+  "post-2025-11-04-on-walking-as-a-method": {
+    "picked_at": "2026-04-29T13:44:50.539754Z",
+    "model": "claude-sonnet-4-6",
+    "post_text_hash": "a3c6ad7723234990",
+    "picks": [
+      {
+        "filename": "IMG_2541.jpg",
+        "rationale": "A spiral notebook on its cover mirrors the post's recurring image of the small notebook kept for thoughts retrieved from walks."
+      },
+      {
+        "filename": "IMG_2597.jpg",
+        "rationale": "A vintage compass rose evokes navigation and wayfinding — a fitting metaphor for walking as a method of orienting one's thinking."
+      }
+    ]
+  },
+  "post-2026-02-14-fragments-on-hume": {
+    "picked_at": "2026-04-29T13:44:55.448707Z",
+    "model": "claude-sonnet-4-6",
+    "post_text_hash": "2ce18b40c6f810fe",
+    "picks": [
+      {
+        "filename": "IMG_2583.jpg",
+        "rationale": "Two ornate gothic arrow/divider stickers with compass rose medallions evoke the directional tension of moving from 'is' to 'ought' — a visual metaphor for the philosophical seam Hume traces."
+      },
+      {
+        "filename": "IMG_2619.jpg",
+        "rationale": "A vintage pointing hand with ruffled cuff quietly mirrors Hume's own gesture of marking the move — pointing at something without fully condemning it."
+      }
+    ]
+  },
+  "post-2026-04-22-the-tick-bar": {
+    "picked_at": "2026-04-29T13:44:59.682678Z",
+    "model": "claude-sonnet-4-6",
+    "post_text_hash": "a505dd3abad47f46",
+    "picks": [
+      {
+        "filename": "IMG_2583.jpg",
+        "rationale": "Ornate arrow/divider stickers with scrollwork and compass rose medallions visually echo the tick bar's role as a navigation and position indicator along a linear sequence."
+      },
+      {
+        "filename": "IMG_2597.jpg",
+        "rationale": "A vintage compass rose sticker — a classic navigation aid — mirrors the post's core theme of orienting readers within a stream of content."
+      }
+    ]
+  }
+}

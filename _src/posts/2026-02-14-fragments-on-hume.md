@@ -8,8 +8,6 @@ references:
   - "Foot, P. *Natural Goodness* (Oxford University Press, 2001)."
 ---
 
-![A curvy figure that the text wraps around](static/images/posts/curvy-1.png){.wrap-right}
-
 Hume's complaint is, on the face of it, modest. Writers, he notes, drift unannounced from descriptions of the world to prescriptions about it — from *is* to *ought* — without ever pausing to justify the leap. He marks the move and asks for an account of it. He does not, in the original passage, claim the leap is impossible.
 
 That this small remark has carried so much weight is partly an accident of philosophical genealogy and partly because the remark, gentle as it is, points at a real seam. The seam runs through the practice of moral reasoning whether or not we have the right vocabulary for it.

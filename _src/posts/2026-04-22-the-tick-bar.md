@@ -7,8 +7,6 @@ references:
   - "Edward Tufte. *The Visual Display of Quantitative Information* (Graphics Press, 2nd ed., 2001)."
 ---
 
-![A small curvy ornament floated to the left](static/images/posts/curvy-2.png){.wrap-left}
-
 Why a tick bar instead of a list. The problem with a list of post titles in the right margin is that the list either grows beyond the viewport (in which case you scroll twice — once on the article, once on the table of contents) or it has to be compressed into something smaller than its natural size (in which case it stops working as a list).
 
 A bar of marks does neither. Each post is a horizontal line of fixed-but-tiny height. With hundreds of posts, the bar still fits. Hover gives you the title back, on demand, without claiming permanent screen real-estate.
