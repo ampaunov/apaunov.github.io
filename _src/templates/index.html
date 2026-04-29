@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block body_class %}page-home{% endblock %}
+
+{% block content %}
+<div class="home-toolbar">
+    <a class="jump-to-bottom" href="#post-bottom-anchor" aria-label="Jump to most recent post">
+        <span class="jump-label">Jump to most recent</span>
+        <span class="jump-icon" aria-hidden="true">&#x2193;</span>
+    </a>
+</div>
+
+<main class="post-stream" id="post-stream">
+    {% for post in posts %}
+    <article id="{{ post.id }}" class="post" data-post-id="{{ post.id }}" data-post-title="{{ post.title }}">
+        <header class="post-header">
+            <h2 class="post-title"><a href="#{{ post.id }}">{{ post.title }}</a></h2>
+            <time class="post-date" datetime="{{ post.date }}">{{ post.date_display }}</time>
+        </header>
+        <div class="post-body">
+            {{ post.body_html | safe }}
+        </div>
+        {% if post.references %}
+        <aside class="post-refs" aria-label="References for this post">
+            <h3>References</h3>
+            <ol>
+                {% for ref in post.references %}
+                <li id="ref-{{ post.id }}-{{ loop.index }}">
+                    <a class="reference-link" href="references.html#ref-{{ post.id }}-{{ loop.index }}-target">{{ ref.html | safe }}</a>
+                </li>
+                {% endfor %}
+            </ol>
+        </aside>
+        {% endif %}
+        <div class="post-end" aria-hidden="true">
+            <img class="ornament ornament-end" src="static/images/ornaments/fleuron.svg" alt="">
+        </div>
+    </article>
+    {% endfor %}
+    <div id="post-bottom-anchor" aria-hidden="true"></div>
+</main>
+
+<nav class="tick-nav" aria-label="Post navigator">
+    <ol class="tick-list" id="tick-list">
+        {% for post in posts %}
+        <li class="tick-item">
+            <a href="#{{ post.id }}" data-post-id="{{ post.id }}">
+                <span class="tick" aria-hidden="true"></span>
+                <span class="tick-label">{{ post.title }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ol>
+</nav>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ static_prefix }}static/js/tick-nav.js"></script>
+{% endblock %}

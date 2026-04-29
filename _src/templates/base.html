@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_title }}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ static_prefix }}static/css/site.css">
+    {% block head_extra %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a class="site-title" href="{{ static_prefix }}index.html">{{ site_title }}</a>
+            <nav class="site-nav" aria-label="Primary">
+                <ul>
+                    <li><a href="{{ static_prefix }}index.html"{% if page_id == 'home' %} aria-current="page"{% endif %}>Posts</a></li>
+                    <li><a href="{{ static_prefix }}references.html"{% if page_id == 'references' %} aria-current="page"{% endif %}>References</a></li>
+                    <li><a href="{{ static_prefix }}about.html"{% if page_id == 'about' %} aria-current="page"{% endif %}>About</a></li>
+                    {# future: <li><a href="{{ static_prefix }}data.html">Data</a></li> #}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer class="site-footer">
+        <p>&copy; {{ current_year }} Alex Paunov</p>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

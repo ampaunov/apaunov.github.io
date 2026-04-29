@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}References — {{ site_title }}{% endblock %}
+{% block body_class %}page-references{% endblock %}
+
+{% block content %}
+<main class="references-page">
+    <h1 class="page-heading">References</h1>
+    <p class="page-lede">Listed in the order they appear across posts. Click a reference to jump to the post that cites it.</p>
+
+    <ol class="references-list">
+        {% for entry in reference_entries %}
+        <li class="reference-entry" id="ref-{{ entry.post_id }}-{{ entry.index_in_post }}-target">
+            <div class="reference-meta">
+                <a class="reference-back" href="index.html#{{ entry.post_id }}">From: <em>{{ entry.post_title }}</em></a>
+            </div>
+            <div class="reference-body">
+                {{ entry.html | safe }}
+            </div>
+        </li>
+        {% endfor %}
+    </ol>
+</main>
+{% endblock %}

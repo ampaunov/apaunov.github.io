@@ -1,0 +1,462 @@
+/* ==========================================================================
+   site.css — typographic personal site
+   --------------------------------------------------------------------------
+   Sections:
+     1. Reset and tokens
+     2. Base typography
+     3. Site header and footer
+     4. Home / post stream layout
+     5. Posts (drop cap, ornaments, curvy image wrap)
+     6. Tick navigator (right rail)
+     7. References page
+     8. About page
+     9. Responsive breakpoints
+   ========================================================================== */
+
+
+/* 1. Reset and tokens ------------------------------------------------------ */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+:root {
+    --ink: #111111;
+    --ink-soft: #444444;
+    --ink-faint: #888888;
+    --paper: #ffffff;
+    --rule: #d8d4cc;
+    --accent: #6a4a2b;          /* warm sepia, sparingly used */
+
+    --serif: 'EB Garamond', Georgia, 'Iowan Old Style', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+
+    --measure: 44rem;            /* readable text column */
+    --content-max: 64rem;        /* outer content max */
+    --rail-width: 4rem;          /* right rail for tick navigator */
+
+    --line: 1.55;
+    --base-size: 1.25rem;        /* ~20px */
+}
+
+/* 2. Base typography -------------------------------------------------------- */
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: var(--base-size);
+    line-height: var(--line);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p { margin: 0 0 1em 0; }
+
+a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: rgba(0, 0, 0, 0.35);
+}
+a:hover { text-decoration-color: var(--ink); }
+
+h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    line-height: 1.2;
+    margin: 0 0 0.5em 0;
+}
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.2rem; }
+
+blockquote {
+    margin: 1em 0;
+    padding-left: 1em;
+    border-left: 2px solid var(--rule);
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+
+/* 3. Site header and footer ------------------------------------------------- */
+
+.site-header {
+    border-bottom: 1px solid var(--rule);
+    padding: 1.25rem 1.5rem;
+}
+.site-header-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.site-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+}
+.site-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+.site-nav a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--ink-soft);
+}
+.site-nav a:hover,
+.site-nav a[aria-current="page"] { color: var(--ink); }
+
+.site-footer {
+    margin-top: 4rem;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 0.9rem;
+}
+
+
+/* 4. Home / post stream layout --------------------------------------------- */
+
+.home-toolbar {
+    max-width: var(--content-max);
+    margin: 1rem auto 0;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+.jump-to-bottom {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    border: 1px solid var(--rule);
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 120ms ease, border-color 120ms ease;
+}
+.jump-to-bottom:hover {
+    border-color: var(--ink);
+    background: #f8f6f2;
+}
+.jump-icon { font-size: 1.1em; }
+
+.post-stream {
+    max-width: var(--measure);
+    margin: 2rem auto 0;
+    padding: 0 1.5rem;
+    /* leave room for the right rail */
+    padding-right: calc(1.5rem + var(--rail-width));
+}
+
+
+/* 5. Posts ----------------------------------------------------------------- */
+
+.post {
+    margin: 0 0 5rem 0;
+    padding-top: 1rem;
+    /* hidden anchor offset so jumps don't tuck title under header */
+    scroll-margin-top: 4rem;
+}
+
+.post-header {
+    margin-bottom: 1.25rem;
+}
+.post-title {
+    font-size: 1.7rem;
+    margin: 0 0 0.2rem 0;
+}
+.post-title a {
+    text-decoration: none;
+    color: var(--ink);
+}
+.post-date {
+    color: var(--ink-faint);
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+.post-body { /* reading column */ }
+
+/* Drop cap on the first paragraph of the post body */
+.post-body > p:first-of-type::first-letter {
+    font-family: var(--serif);
+    font-weight: 600;
+    float: left;
+    font-size: 3.6em;     /* ~3 lines tall once line-height is factored */
+    line-height: 0.85;
+    padding: 0.05em 0.08em 0 0;
+    color: var(--ink);
+}
+
+/* Inline citations in the post body */
+.post-body .citation {
+    font-size: 0.8em;
+    text-decoration: none;
+    color: var(--accent);
+    vertical-align: super;
+}
+
+/* Ornaments — small decorative images */
+
+.ornament {
+    display: inline-block;
+    height: 1em;
+    width: auto;
+    vertical-align: baseline;
+    user-select: none;
+}
+
+/* End-of-post mark: sits inline after the last sentence
+   (build script appends it at the end of the final paragraph) */
+.ornament-end-inline {
+    height: 1em;
+    margin-left: 0.4em;
+    vertical-align: baseline;
+}
+
+/* The .post-end block is a fallback / second decorative pass shown centered
+   below the post body for visual closure */
+.post-end {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+.post-end .ornament {
+    height: 1.4em;
+    opacity: 0.6;
+}
+
+/* Section separators inside a post: centered, no float */
+.section-separator {
+    display: block;
+    margin: 2rem auto;
+    height: 1.5em;
+    width: auto;
+    opacity: 0.7;
+}
+
+/* Wraparound images for posts.
+   Two flavors:
+     .figure-wrap-left  — floats left, text wraps around the right
+     .figure-wrap-right — floats right, text wraps around the left
+   For curvy images (transparent PNG with alpha), shape-outside follows
+   the alpha boundary. */
+
+.post-figure {
+    margin: 0 1.25em 1em 0;
+    max-width: 50%;
+}
+.post-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.post-figure figcaption {
+    font-size: 0.85em;
+    color: var(--ink-faint);
+    font-style: italic;
+    margin-top: 0.4em;
+    text-align: center;
+}
+
+.figure-wrap-left {
+    float: left;
+    margin: 0.4em 1.5em 0.5em 0;
+    /* If image has alpha (curvy), follow it: */
+    shape-outside: var(--shape, none);
+    shape-margin: 0.6em;
+}
+.figure-wrap-right {
+    float: right;
+    margin: 0.4em 0 0.5em 1.5em;
+    shape-outside: var(--shape, none);
+    shape-margin: 0.6em;
+}
+/* Clear floats after each post so wraps don't leak into the next post */
+.post::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* Per-post references aside */
+.post-refs {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px dotted var(--rule);
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+}
+.post-refs h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+.post-refs ol {
+    margin: 0;
+    padding-left: 1.4em;
+}
+
+
+/* 6. Tick navigator (right rail) ------------------------------------------- */
+
+.tick-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: var(--rail-width);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* let only the children receive events */
+    z-index: 5;
+}
+.tick-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    pointer-events: auto;
+    /* JS sets per-tick scale via inline transform on .tick */
+}
+.tick-item a {
+    display: block;
+    position: relative;
+    padding: 1px 0;
+    text-decoration: none;
+    color: inherit;
+}
+.tick {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--ink-soft);
+    border-radius: 1px;
+    transform-origin: right center;
+    transition: width 90ms ease, background 90ms ease;
+}
+.tick-item a:hover .tick,
+.tick-item a:focus .tick {
+    background: var(--ink);
+}
+.tick-item.is-active .tick {
+    background: var(--accent);
+    width: 30px;
+}
+
+/* Hover bubble: the post title beside the tick */
+.tick-label {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    line-height: 1.2;
+    padding: 0.3em 0.55em;
+    border-radius: 3px;
+    white-space: nowrap;
+    max-width: 22em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 90ms ease, transform 90ms ease;
+}
+.tick-item a:hover .tick-label,
+.tick-item a:focus .tick-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+
+/* 7. References page ------------------------------------------------------- */
+
+.references-page {
+    max-width: var(--measure);
+    margin: 2.5rem auto 0;
+    padding: 0 1.5rem;
+}
+.page-heading {
+    font-size: 2.2rem;
+    margin-bottom: 0.2em;
+}
+.page-lede {
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+.references-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: ref;
+}
+.reference-entry {
+    counter-increment: ref;
+    margin: 0 0 1.5rem 0;
+    padding: 0.6rem 0 0.6rem 2.4rem;
+    border-top: 1px solid var(--rule);
+    position: relative;
+    scroll-margin-top: 4rem;
+}
+.reference-entry::before {
+    content: counter(ref);
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-faint);
+    font-size: 0.95rem;
+}
+.reference-meta {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    margin-bottom: 0.3rem;
+}
+.reference-meta a { color: var(--ink-faint); }
+.reference-meta a:hover { color: var(--ink); }
+.reference-body { color: var(--ink); }
+.reference-body em { color: var(--ink-soft); }
+
+
+/* 8. About page ------------------------------------------------------------ */
+
+.about-page {
+    max-width: var(--measure);
+    margin: 2.5rem auto 0;
+    padding: 0 1.5rem;
+}
+.about-body p { margin-bottom: 1em; }
+
+
+/* 9. Responsive ------------------------------------------------------------ */
+
+/* Hide tick navigator on narrow viewports — fall back to scrolling */
+@media (max-width: 720px) {
+    .tick-nav { display: none; }
+    .post-stream { padding-right: 1.5rem; }
+    .post-figure { max-width: 100%; float: none !important; margin: 1em 0; }
+    :root { --base-size: 1.1rem; }
+}
