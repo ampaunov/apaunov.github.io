@@ -273,16 +273,22 @@ blockquote {
 }
 
 /* Floated wrap figures. shape-outside is set inline by the build step
-   when the picked image has a curvy alpha sibling — see build.py. */
+   when the picked image has a curvy alpha sibling — see build.py.
+   The curvy PNGs are alpha-bbox cropped at generation time (see
+   bg_remove.py) so the float box matches the visible silhouette.
+   shape-image-threshold drops the faint AA halo from the outline;
+   shape-margin sets the gutter between silhouette and wrapped text. */
 .figure-wrap-left {
     float: left;
     margin: 0.4em 1.5em 0.5em 0;
-    shape-margin: 0.6em;
+    shape-image-threshold: 0.1;
+    shape-margin: 1em;
 }
 .figure-wrap-right {
     float: right;
     margin: 0.4em 0 0.5em 1.5em;
-    shape-margin: 0.6em;
+    shape-image-threshold: 0.1;
+    shape-margin: 1em;
 }
 /* Clear floats after each post so wraps don't leak into the next post */
 .post::after {
